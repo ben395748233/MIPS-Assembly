@@ -3,9 +3,24 @@
 
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+#include <array>
+#include <cstdint>
+#include <iostream>
+#include <span>
+
+int main() {
+    std::array<std::uint32_t, 3> registers{
+        10, 20, 30
+    };
+
+    std::span<std::uint32_t> view{ registers };
+
+    std::cout << "MIPS Architecture Lab\n";
+    std::cout << "C++20: OK\n";
+    std::cout << "Register count: "
+        << view.size() << '\n';
+
+    return 0;
 }
 
 // 執行程式: Ctrl + F5 或 [偵錯] > [啟動但不偵錯] 功能表
