@@ -137,10 +137,13 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="CPUState.hpp" />
+    <ClInclude Include="Logger.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="SimulationConfig.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPUState.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MipsLab.Core.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

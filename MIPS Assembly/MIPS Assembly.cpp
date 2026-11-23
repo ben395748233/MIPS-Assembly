@@ -1,35 +1,64 @@
-﻿// MIPS Assembly.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及結束執行。
-//
-
+﻿
 #include <iostream>
+#include <string_view>
 
-#include <array>
-#include <cstdint>
-#include <iostream>
-#include <span>
+namespace {
 
-int main() {
-    std::array<std::uint32_t, 3> registers{
-        10, 20, 30
-    };
+    constexpr std::string_view Version = "0.1.0";
 
-    std::span<std::uint32_t> view{ registers };
+    void print_version() {
+        std::cout
+            << "MIPS Architecture Lab v"
+            << Version << '\n';
+    }
 
-    std::cout << "MIPS Architecture Lab\n";
-    std::cout << "C++20: OK\n";
-    std::cout << "Register count: "
-        << view.size() << '\n';
+    void print_help() {
+        std::cout
+            << "MIPS Architecture Lab\n\n"
+            << "Usage:\n"
+            << "  mipslab --help\n"
+            << "  mipslab --version\n\n"
+            << "Future commands:\n"
+            << "  assemble\n"
+            << "  disasm\n"
+            << "  run\n"
+            << "  trace\n"
+            << "  compare\n"
+            << "  benchmark\n";
+    }
 
-    return 0;
 }
 
-// 執行程式: Ctrl + F5 或 [偵錯] > [啟動但不偵錯] 功能表
-// 偵錯程式: F5 或 [偵錯] > [啟動偵錯] 功能表
+int main(int argc, char* argv[]) {
 
-// 開始使用的提示: 
-//   1. 使用 [方案總管] 視窗，新增/管理檔案
-//   2. 使用 [Team Explorer] 視窗，連線到原始檔控制
-//   3. 使用 [輸出] 視窗，參閱組建輸出與其他訊息
-//   4. 使用 [錯誤清單] 視窗，檢視錯誤
-//   5. 前往 [專案] > [新增項目]，建立新的程式碼檔案，或是前往 [專案] > [新增現有項目]，將現有程式碼檔案新增至專案
-//   6. 之後要再次開啟此專案時，請前往 [檔案] > [開啟] > [專案]，然後選取 .sln 檔案
+    // argc：命令列參數數量，包含程式名稱
+    // argv：每個參數對應的字串
+
+    if (argc == 1) {
+        print_help();
+        return 0;
+    }
+
+    if (argc != 2) {
+        std::cerr << "Error: Invalid arguments\n";
+        return 2;
+    }
+
+    std::string_view argument{ argv[1] };
+
+    if (argument == "--help" || argument == "-h") {
+        print_help();
+        return 0;
+    }
+
+    if (argument == "--version") {
+        print_version();
+        return 0;
+    }
+
+    std::cerr
+        << "Error: Unknown argument: "
+        << argument << '\n';
+
+    return 2;
+}

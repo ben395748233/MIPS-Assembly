@@ -361,3 +361,22 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Build output
+/build/
+/x64/
+/.vs/
+
+# MSVC artifacts
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.tlog
+*.lastbuildstate
+
+# Logs
+*.log
+
+# Local configuration
+CMakeUserPresets.json

@@ -1,0 +1,32 @@
+
+name: MIPS Architecture Lab CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-build:
+    name: Windows MSVC Debug + Release
+    runs-on: windows-2022
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Show Environment
+        run: |
+          cmake --version
+          ctest --version
+
+      - name: Validate M0
+        run: |
+          .\scripts\validate.ps1
